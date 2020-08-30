@@ -14,7 +14,7 @@ Using everything I learned from my Node.js Udemy course
 
 # Starting Instructions
 
-1. you have to add a `config/default.json` in which you define your secrets/ credentials, like this:
+1. You have to add a `config/default.json` in which you define your secrets/credentials, like this:
    ```
    {
    "mongoURI": "mongodb+srv://<username>:<password>@<mongdbAddress>?retryWrites=true&w=majority",
@@ -22,3 +22,7 @@ Using everything I learned from my Node.js Udemy course
    "jwtExpiration": 360000
    }
    ```
+2. `npm i`
+3. `npm run tsc`
+4. `npm run server` -> stop after finnished
+5. `npm run start` -> backend is now running
