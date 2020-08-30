@@ -6,12 +6,6 @@ A hotel planer backend application written in Node.js with Typescript and MongoD
 
 Using everything I learned from my Node.js Udemy course
 
-# Most important middlewares used in the project
-
-- mongoose
-- express
-- body-parser
-
 # Starting Instructions
 
 1. You have to add a `config/default.json` in which you define your secrets/credentials, like this:
@@ -26,3 +20,21 @@ Using everything I learned from my Node.js Udemy course
 3. `npm run tsc`
 4. `npm run server` -> stop after finnished
 5. `npm run start` -> backend is now running
+
+# Manual Testing with Postman
+
+POST `localhost:5000/api/address` with body:
+
+```
+{
+ "street": "Neue Straße 1",
+ "postCode": "12345",
+ "city": "Regensburg",
+ "country": "Germany",
+ "notes": "tolle Adresse"
+}
+```
+
+#
+
+Ideas and best practices taken from https://github.com/polcham/mongoose-express-ts
