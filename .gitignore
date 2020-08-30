@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Personal file with credentials and secrets
-*/default.json
+/config/default.json
