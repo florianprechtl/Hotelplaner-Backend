@@ -3,6 +3,8 @@ import express from "express";
 
 import connectDB from "../config/database";
 
+import addressRoutes from "./routes/api/address";
+
 const app = express();
 
 // Connect to MongoDB
@@ -13,12 +15,12 @@ app.set("port", process.env.PORT || 5000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// @route   GET /
-// @desc    Test Base API
-// @access  Public
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
   res.send("API Running");
+  next();
 });
+
+app.use("/api/address", addressRoutes);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
