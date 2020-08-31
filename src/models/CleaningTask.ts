@@ -27,7 +27,7 @@ const cleaningTaskSchema: Schema = new Schema(
       required: true,
     },
     notes: {
-      type: Date,
+      type: String,
       required: false,
     },
   },

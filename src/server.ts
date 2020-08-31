@@ -8,6 +8,7 @@ import companyRoutes from "./routes/api/company";
 import roomRoutes from "./routes/api/room";
 import guestRoutes from "./routes/api/guest";
 import cleanerRoutes from "./routes/api/cleaner";
+import cleaningTaskRoutes from "./routes/api/cleaningTask";
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/api/company", companyRoutes);
 app.use("/api/room", roomRoutes);
 app.use("/api/guest", guestRoutes);
 app.use("/api/cleaner", cleanerRoutes);
+app.use("/api/cleaningTask", cleaningTaskRoutes);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
