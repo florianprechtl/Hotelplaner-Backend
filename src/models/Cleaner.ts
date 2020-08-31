@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { IAddress } from "./Address";
+import { Cleaner } from "src/types/cleaner";
 
 /**
  * Interface to model the Cleaner Schema for TypeScript.
@@ -10,14 +10,7 @@ import { IAddress } from "./Address";
  * @param phoneNumber:string
  * @param notes:string
  */
-export interface ICleaner extends Document {
-  firstName: string;
-  lastName: string;
-  address: IAddress["_id"];
-  email: string;
-  phoneNumber: string;
-  notes: string;
-}
+export interface ICleaner extends Document, Cleaner {}
 
 const cleanerSchema: Schema = new Schema(
   {

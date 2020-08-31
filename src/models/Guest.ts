@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { IAddress } from "./Address";
+import { Guest } from "src/types/guest";
 
 /**
  * Interface to model the Guest Schema for TypeScript.
@@ -10,14 +10,7 @@ import { IAddress } from "./Address";
  * @param phoneNumber:string
  * @param notes:string
  */
-export interface IGuest extends Document {
-  firstName: string;
-  lastName: string;
-  address: IAddress["_id"];
-  email: string;
-  phoneNumber: string;
-  notes: string;
-}
+export interface IGuest extends Document, Guest {}
 
 const guestSchema: Schema = new Schema(
   {

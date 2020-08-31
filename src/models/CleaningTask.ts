@@ -1,6 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { ICleaner } from "./Cleaner";
-import { IRoom } from "./Room";
+import { CleaningTask } from "src/types/cleaningTask";
 
 /**
  * Interface to model the CleaningTask Schema for TypeScript.
@@ -9,12 +8,7 @@ import { IRoom } from "./Room";
  * @param cleaner:ref=> Cleaner._id
  * @param notes:string
  */
-export interface ICleaningTask extends Document {
-  date: Date;
-  room: IRoom["_id"];
-  cleaner: ICleaner["_id"];
-  notes: string;
-}
+export interface ICleaningTask extends Document, CleaningTask {}
 
 const cleaningTaskSchema: Schema = new Schema(
   {

@@ -1,4 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Address } from "src/types/address";
 
 /**
  * Interface to model the Address Schema for TypeScript.
@@ -8,13 +9,7 @@ import { Document, Model, model, Schema } from "mongoose";
  * @param country:string
  * @param notes:string
  */
-export interface IAddress extends Document {
-  street: string;
-  postCode: string;
-  city: string;
-  coutry: string;
-  notes: string;
-}
+export interface IAddress extends Document, Address {}
 
 const addressSchema: Schema = new Schema(
   {

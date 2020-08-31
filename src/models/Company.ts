@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { IAddress } from "./Address";
+import { Company } from "src/types/company";
 
 /**
  * Interface to model the Company Schema for TypeScript.
@@ -8,12 +8,7 @@ import { IAddress } from "./Address";
  * @param address:ref=> Address._id
  * @param notes:string
  */
-export interface ICompany extends Document {
-  name: string;
-  phoneNumber: string;
-  cleaner: IAddress["_id"];
-  notes: string;
-}
+export interface ICompany extends Document, Company {}
 
 const companySchema: Schema = new Schema(
   {

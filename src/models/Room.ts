@@ -1,4 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
+import { Room } from "src/types/room";
 
 /**
  * Interface to model the Room Schema for TypeScript.
@@ -12,17 +13,7 @@ import { Document, Model, model, Schema } from "mongoose";
  * @param dateLastCleaningTask:date
  * @param notes:string
  */
-export interface IRoom extends Document {
-  roomNumber: string;
-  building: string;
-  type: string;
-  description: string;
-  isHandycapAccessable: boolean;
-  level: number;
-  isChildFriedly: boolean;
-  dateLastCleaningTask: Date;
-  notes: string;
-}
+export interface IRoom extends Document, Room {}
 
 const roomSchema: Schema = new Schema(
   {

@@ -1,6 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { IGuest } from "./Guest";
-import { ICompany } from "./Company";
+import { Booking } from "src/types/booking";
 
 /**
  * Interface to model the Booking Schema for TypeScript.
@@ -13,16 +12,7 @@ import { ICompany } from "./Company";
  * @param isPayed:boolean
  * @param notes:string
  */
-export interface IBooking extends Document {
-  checkinDate: Date;
-  checkoutDate: Date;
-  guest: IGuest["_id"];
-  company: ICompany["_id"];
-  hasBreakfast: boolean;
-  paymentMethod: string;
-  isPayed: boolean;
-  notes: string;
-}
+export interface IBooking extends Document, Booking {}
 
 const bookingSchema: Schema = new Schema(
   {
