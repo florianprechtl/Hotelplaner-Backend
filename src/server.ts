@@ -6,6 +6,7 @@ import connectDB from "../config/database";
 import addressRoutes from "./routes/api/address";
 import companyRoutes from "./routes/api/company";
 import roomRoutes from "./routes/api/room";
+import guestRoutes from "./routes/api/guest";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.get("/", (req, res, next) => {
 app.use("/api/address", addressRoutes);
 app.use("/api/company", companyRoutes);
 app.use("/api/room", roomRoutes);
+app.use("/api/guest", guestRoutes);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
