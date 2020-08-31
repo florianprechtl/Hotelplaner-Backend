@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { CleaningTask } from "src/types/cleaningTask";
+import { CleaningTask } from "src/interfaces/cleaningTask";
 
 /**
  * Interface to model the CleaningTask Schema for TypeScript.

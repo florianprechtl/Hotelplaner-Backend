@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { Company } from "src/types/company";
+import { Company } from "src/interfaces/company";
 
 /**
  * Interface to model the Company Schema for TypeScript.
