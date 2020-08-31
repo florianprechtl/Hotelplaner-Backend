@@ -24,16 +24,16 @@ const onInvalidObjectId = (res: Response, id: any) => {
 
 const checkRoom = [
   check("roomNumber", "Please include valid room number")
-    .isString()
+    .isAlphanumeric()
     .isLength({ max: 3 }),
   check("building", "Please include valid building")
-    .isString()
+    .isAlphanumeric()
     .isLength({ max: 50 }),
   check("type", "Please include valid room type")
-    .isString()
+    .isAlphanumeric()
     .isLength({ max: 50 }),
   check("description", "Please include valid description")
-    .isString()
+    .isAlpha()
     .isLength({ max: 500 }),
   check(
     "isHandycapAccessable",
@@ -52,6 +52,7 @@ const checkRoom = [
     .isString(),
   check("notes", "Please include valid notes")
     .optional()
+    .isAlphanumeric()
     .isLength({ max: 500 }),
 ];
 

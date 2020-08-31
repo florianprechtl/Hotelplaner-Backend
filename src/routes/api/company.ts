@@ -19,25 +19,21 @@ const onInvalidObjectId = (res: Response, id: any) => {
 
 const checkCompany = [
   check("name", "Please include valid company name")
-    .exists()
-    .isString()
+    .isAlphanumeric()
     .isLength({ max: 50 }),
   check("phoneNumber", "Please include valid phonenumber")
-    .exists()
-    .isString()
     .isMobilePhone("any")
     .isLength({ max: 50 }),
   check("email", "Please include valid company objectId")
-    .exists()
-    .isString()
     .isEmail()
     .isLength({ max: 50 }),
-  check("address", "Please include valid email with a length of 12 bytes/chars")
-    .exists()
-    .isString()
-    .isLength({ max: 24, min: 24 }),
+  check(
+    "address",
+    "Please include valid email with a length of 12 bytes/chars"
+  ).isMongoId(),
   check("notes", "Please include valid notes")
     .optional()
+    .isAlphanumeric()
     .isLength({ max: 500 }),
 ];
 

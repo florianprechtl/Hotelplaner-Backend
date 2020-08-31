@@ -34,6 +34,7 @@ const checkGuest = [
   check("phoneNumber", "Please include valid phonenumber").isMobilePhone("any"),
   check("notes", "Please include valid notes")
     .optional()
+    .isAlphanumeric()
     .isLength({ max: 500 }),
 ];
 

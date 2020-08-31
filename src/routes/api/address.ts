@@ -19,23 +19,18 @@ const onInvalidObjectId = (res: Response, id: any) => {
 
 const checkAddress = [
   check("street", "Please include valid street")
-    .exists()
-    .isString()
+    .isAlphanumeric()
     .isLength({ max: 50 }),
   check("postCode", "Please include valid postCode")
-    .exists()
-    .isString()
+    .isAlphanumeric()
     .isLength({ max: 5 }),
-  check("city", "Please include valid city")
-    .exists()
-    .isString()
-    .isLength({ max: 50 }),
+  check("city", "Please include valid city").isAlpha().isLength({ max: 50 }),
   check("country", "Please include valid country")
-    .exists()
-    .isString()
+    .isAlpha()
     .isLength({ max: 50 }),
   check("notes", "Please include valid notes")
     .optional()
+    .isAlphanumeric()
     .isLength({ max: 500 }),
 ];
 
