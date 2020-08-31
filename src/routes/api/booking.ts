@@ -1,8 +1,8 @@
 import { Router, Request, Response } from "express";
 import { check, validationResult } from "express-validator/check";
 import HttpStatusCodes from "http-status-codes";
-import Guest, { IGuest } from "../../models/Guest";
-import { GuestObject } from "../../objectDefinitions/guest";
+import Booking, { IBooking } from "../../models/Booking";
+import { BookingObject } from "../../objectDefinitions/booking";
 import { Error, isValidObjectId } from "mongoose";
 
 /**
@@ -22,16 +22,20 @@ const onInvalidObjectId = (res: Response, id: any) => {
   console.log(id, " is not a valid ObjectId");
 };
 
-const checkGuest = [
-  check("firstName", "Please include valid firstname")
-    .isAlpha()
+const checkBooking = [
+  check("checkinDate", "Please include valid checkin date")
+    .isString()
     .isLength({ max: 50 }),
-  check("lastName", "Please include valid lastname")
-    .isAlpha()
+  check("checkoutDate", "Please include valid checkout date")
+    .isString()
     .isLength({ max: 50 }),
-  check("address", "Please include valid address").isMongoId(),
-  check("email", "Please include valid email").isEmail(),
-  check("phoneNumber", "Please include valid phonenumber").isMobilePhone("any"),
+  check("guest", "Please include valid guest id").isMongoId(),
+  check("company", "Please include valid company id").isMongoId(),
+  check("hasBreakfast", "Pleasse include valid breakfast status").isBoolean(),
+  check("paymentMethod", "Please include valid payment method")
+    .isString()
+    .isLength({ max: 50 }),
+  check("isPayed", "Please include valid payment status").isBoolean(),
   check("notes", "Please include valid notes")
     .optional()
     .isAlphanumeric()
@@ -41,9 +45,9 @@ const checkGuest = [
 router.get("/:id", (req: Request, res: Response) => {
   const id = req.params.id;
   if (isValidObjectId(id)) {
-    Guest.findById(id)
-      .then((guest) => {
-        res.status(HttpStatusCodes.OK).json(guest);
+    Booking.findById(id)
+      .then((booking) => {
+        res.status(HttpStatusCodes.OK).json(booking);
       })
       .catch((err) => onError(res, err));
   } else {
@@ -52,28 +56,28 @@ router.get("/:id", (req: Request, res: Response) => {
 });
 
 router.get("/", (req, res, next) => {
-  Guest.find()
-    .then((allGuests) => {
-      res.status(HttpStatusCodes.OK).json(allGuests);
+  Booking.find()
+    .then((allBookings) => {
+      res.status(HttpStatusCodes.OK).json(allBookings);
     })
     .catch((err) => onError(res, err));
 });
 
-router.post("/", checkGuest, (req: Request, res: Response) => {
+router.post("/", checkBooking, (req: Request, res: Response) => {
   const body = req.body;
-  const newGuest: IGuest = new Guest(body);
-  newGuest.save().then((guest) => {
-    res.status(200).json(guest);
+  const newBooking: IBooking = new Booking(body);
+  newBooking.save().then((booking) => {
+    res.status(200).json(booking);
   });
 });
 
-router.put("/:id", checkGuest, (req: Request, res: Response) => {
+router.put("/:id", checkBooking, (req: Request, res: Response) => {
   const id = req.params.id;
   if (isValidObjectId(id)) {
-    const updatedGuest: GuestObject = req.body as GuestObject;
-    Guest.findOneAndUpdate({ _id: id }, { $set: updatedGuest })
-      .then((oldGuest) => {
-        res.status(HttpStatusCodes.OK).json(oldGuest);
+    const updatedBooking: BookingObject = req.body as BookingObject;
+    Booking.findOneAndUpdate({ _id: id }, { $set: updatedBooking })
+      .then((oldBooking) => {
+        res.status(HttpStatusCodes.OK).json(oldBooking);
       })
       .catch((err) => onError(res, err));
   } else {
@@ -84,9 +88,9 @@ router.put("/:id", checkGuest, (req: Request, res: Response) => {
 router.delete("/:id", (req: Request, res: Response) => {
   const id = req.params.id;
   if (isValidObjectId(id)) {
-    Guest.findByIdAndDelete({ _id: id })
-      .then((deletedGuest) => {
-        res.status(HttpStatusCodes.OK).json(deletedGuest);
+    Booking.findByIdAndDelete({ _id: id })
+      .then((deletedBooking) => {
+        res.status(HttpStatusCodes.OK).json(deletedBooking);
       })
       .catch((err) => onError(res, err));
   } else {
