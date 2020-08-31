@@ -1,9 +1,9 @@
 import { Router, Response, Request } from "express";
 import { check, validationResult } from "express-validator/check";
 import HttpStatusCodes from "http-status-codes";
-import Address, { IAddress } from "../../models/Address";
 import { Error, isValidObjectId } from "mongoose";
-import { AddressObject } from "src/objectDefinitions/address";
+import { CompanyObject } from "src/objectDefinitions/company";
+import Company, { ICompany } from "../../models/Company";
 
 const router: Router = Router();
 
@@ -17,23 +17,25 @@ const onInvalidObjectId = (res: Response, id: any) => {
   console.log(id, " is not a valid ObjectId");
 };
 
-const checkAddress = [
-  check("street", "Please include valid street")
+const checkCompany = [
+  check("name", "Please include valid company name")
     .exists()
     .isString()
     .isLength({ max: 50 }),
-  check("postCode", "Please include valid postCode")
+  check("phoneNumber", "Please include valid phonenumber")
     .exists()
     .isString()
-    .isLength({ max: 5 }),
-  check("city", "Please include valid city")
-    .exists()
-    .isString()
+    .isMobilePhone("any")
     .isLength({ max: 50 }),
-  check("country", "Please include valid country")
+  check("email", "Please include valid company objectId")
     .exists()
     .isString()
+    .isEmail()
     .isLength({ max: 50 }),
+  check("address", "Please include valid email with a length of 12 bytes/chars")
+    .exists()
+    .isString()
+    .isLength({ max: 24, min: 24 }),
   check("notes", "Please include valid notes")
     .optional()
     .isLength({ max: 500 }),
@@ -42,9 +44,9 @@ const checkAddress = [
 router.get("/:id", (req: Request, res: Response) => {
   const id = req.params.id;
   if (isValidObjectId(id)) {
-    Address.findById(id)
-      .then((address) => {
-        res.status(HttpStatusCodes.OK).json(address);
+    Company.findById(id)
+      .then((company) => {
+        res.status(HttpStatusCodes.OK).json(company);
       })
       .catch((err) => onError(res, err));
   } else {
@@ -53,14 +55,14 @@ router.get("/:id", (req: Request, res: Response) => {
 });
 
 router.get("/", (req, res, next) => {
-  Address.find()
-    .then((allAddresses) => {
-      res.status(HttpStatusCodes.OK).json(allAddresses);
+  Company.find()
+    .then((allCompanies) => {
+      res.status(HttpStatusCodes.OK).json(allCompanies);
     })
     .catch((err) => onError(res, err));
 });
 
-router.post("/", checkAddress, (req: Request, res: Response) => {
+router.post("/", checkCompany, (req: Request, res: Response) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res
@@ -68,23 +70,23 @@ router.post("/", checkAddress, (req: Request, res: Response) => {
       .json({ errors: errors.array() });
   }
 
-  const addressInformation: IAddress = req.body;
-  const newAddress = new Address(addressInformation);
-  newAddress
+  const companyInformation: ICompany = req.body;
+  const newCompany = new Company(companyInformation);
+  newCompany
     .save()
-    .then((address) => {
-      res.status(HttpStatusCodes.OK).json(address);
+    .then((company) => {
+      res.status(HttpStatusCodes.OK).json(company);
     })
     .catch((err) => onError(res, err));
 });
 
-router.put("/:id", checkAddress, (req: Request, res: Response) => {
+router.put("/:id", checkCompany, (req: Request, res: Response) => {
   const id = req.params.id;
   if (isValidObjectId(id)) {
-    const updatedAddress: AddressObject = req.body as AddressObject;
-    Address.findOneAndUpdate({ _id: id }, { $set: updatedAddress })
-      .then((oldAddress) => {
-        res.status(HttpStatusCodes.OK).json(oldAddress);
+    const updatedCompany: CompanyObject = req.body as CompanyObject;
+    Company.findOneAndUpdate({ _id: id }, { $set: updatedCompany })
+      .then((oldCompany) => {
+        res.status(HttpStatusCodes.OK).json(oldCompany);
       })
       .catch((err) => onError(res, err));
   } else {
@@ -95,9 +97,9 @@ router.put("/:id", checkAddress, (req: Request, res: Response) => {
 router.delete("/:id", (req: Request, res: Response) => {
   const id = req.params.id;
   if (isValidObjectId(id)) {
-    Address.findByIdAndDelete({ _id: id })
-      .then((deletedAddress) => {
-        res.status(HttpStatusCodes.OK).json(deletedAddress);
+    Company.findByIdAndDelete({ _id: id })
+      .then((deletedCompany) => {
+        res.status(HttpStatusCodes.OK).json(deletedCompany);
       })
       .catch((err) => onError(res, err));
   } else {

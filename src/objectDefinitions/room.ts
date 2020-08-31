@@ -5,7 +5,7 @@ export type RoomObject = {
   description: string;
   isHandycapAccessable: boolean;
   level: number;
-  isChildFriedly: boolean;
+  isChildFriendly: boolean;
   dateLastCleaningTask: Date;
   notes: string;
 };
@@ -17,7 +17,7 @@ export interface Room {
   description: string;
   isHandycapAccessable: boolean;
   level: number;
-  isChildFriedly: boolean;
+  isChildFriendly: boolean;
   dateLastCleaningTask: Date;
   notes: string;
 }

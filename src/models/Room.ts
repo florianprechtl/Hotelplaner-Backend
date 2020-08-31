@@ -9,7 +9,7 @@ import { Room } from "src/objectDefinitions/room";
  * @param description:string
  * @param isHandycapAccessable:boolean
  * @param level:number
- * @param isChildFriedly:boolean
+ * @param isChildFriendly:boolean
  * @param dateLastCleaningTask:date
  * @param notes:string
  */
@@ -41,7 +41,7 @@ const roomSchema: Schema = new Schema(
       type: Number,
       required: true,
     },
-    isChildFriedly: {
+    isChildFriendly: {
       type: Boolean,
       required: true,
     },

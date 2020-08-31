@@ -13,7 +13,7 @@ export interface ICompany extends Document, Company {}
 const companySchema: Schema = new Schema(
   {
     name: {
-      type: Date,
+      type: String,
       required: true,
     },
     phoneNumber: {
