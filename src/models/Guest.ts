@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { Guest } from "src/interfaces/guest";
+import { Guest } from "src/objectDefinitions/guest";
 
 /**
  * Interface to model the Guest Schema for TypeScript.

@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { Address } from "src/interfaces/address";
+import { Address } from "src/objectDefinitions/address";
 
 /**
  * Interface to model the Address Schema for TypeScript.

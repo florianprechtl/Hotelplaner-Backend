@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { Room } from "src/interfaces/room";
+import { Room } from "src/objectDefinitions/room";
 
 /**
  * Interface to model the Room Schema for TypeScript.

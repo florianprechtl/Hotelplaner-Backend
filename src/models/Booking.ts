@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { Booking } from "src/interfaces/booking";
+import { Booking } from "src/objectDefinitions/booking";
 
 /**
  * Interface to model the Booking Schema for TypeScript.

@@ -1,5 +1,5 @@
 import { Document, Model, model, Schema } from "mongoose";
-import { Cleaner } from "src/interfaces/cleaner";
+import { Cleaner } from "src/objectDefinitions/cleaner";
 
 /**
  * Interface to model the Cleaner Schema for TypeScript.
