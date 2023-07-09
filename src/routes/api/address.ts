@@ -47,7 +47,7 @@ router.get("/:id", (req: Request, res: Response) => {
   }
 });
 
-router.get("/", (req, res, next) => {
+router.get("/", (req: Request, res: Response) => {
   Address.find()
     .then((allAddresses) => {
       res.status(HttpStatusCodes.OK).json(allAddresses);
